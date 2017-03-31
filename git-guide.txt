@@ -12,10 +12,10 @@ $ pwd       //显示当前目录
 $ git init
 
 3、添加文件到仓库
-$ git add <file>   //可一次性添加多个文件
+$ git add <file>   //可一次性添加多个文件，实质上是将工作区添加到缓存区
 
 4、提交文件到仓库
-$ git commit    //可一次性提交多个文件
+$ git commit    //可一次性提交多个文件,实质上是将缓存区提交到版本库
 $ git commit -m "wrote a readme file"  //-m后面输入的是本次提交的说明
 
 5、查看仓库当前状态
@@ -37,4 +37,40 @@ $ git reset --hard <commit_id>  //通过git log或git reflog查看commit_id
 10、查看工作区和版本库里面最新版本的区别
 $ git diff HEAD -- readme.txt 
 
-11、
+11、撤销修改
+$ git checkout -- <file>  //丢弃工作区的修改  --很重要，没有--，就变成了“切换到另一个分支”的分支管理命令
+$ git reset HEAD <file>  //可以撤销缓存区的修改，重新放到工作区 
+
+12、删除文件
+$ rm <file>  //工作区删除文件命令,误删利用git checkout -- <file>恢复
+$ git rm <file>  //删除版本库中的文件，并且git commit
+
+13、建立gitHub远程仓库
+	1、SSH协议方式：
+		1、创建SSH Key
+		$ ssh-keygen -t rsa -C "yourmail@examle.com"  //在.ssh目录下，生产id_rsa私钥和id_rsa.pub公钥
+		2、登录GitHub,打开“Settings”，“SSH Keys”页面添加公钥
+		3、“Create a new repo"创建一个新的仓库，关联本地仓库
+		$ git remote add origin git@github.com:beblueblue/learngit.git  //beblueblue是GitHub帐号名，origin是git远程库的默认叫法
+		4、把本地库的所有内容推送到远程库git push
+		$ git push -u origin master
+		$ git push origin master
+	2、Https协议方式
+		1、建立Http连接
+		$ git remote add origin https://github.com/beblueblue/learngit.git
+		2、把本地库的所有内容推送到远程库git push
+		$ git push -u origin master
+		$ git push origin master
+
+14、解除远程仓库绑定
+$ git remote rm origin
+
+15、克隆GitHub远程库
+$ git clone git@github.com:beblueblue/learngit.git  //SSH协议方式
+$ git clone https://github.com/beblueblue/learngit.git  //Https协议方式
+
+16、查看文件及目录命令
+$ cat <file>  //显示文件内容
+$ ls    //显示当前目录的内容
+
+		
