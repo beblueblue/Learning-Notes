@@ -69,8 +69,45 @@ $ git remote rm origin
 $ git clone git@github.com:beblueblue/learngit.git  //SSH协议方式
 $ git clone https://github.com/beblueblue/learngit.git  //Https协议方式
 
-16、查看文件及目录命令
+16、GitHub远程库同步到本地
+	查看远程仓库命令
+	$ git remote -v
+	
+	同步方式一：从远程获取最新版本但不合并
+	$ git fetch origin master  //获取最新版本
+	$ git log -p master..origin/master  //比较本地仓库和远程仓库的不同
+	$ git merge origin/master
+	
+	同步方式二：从远程库直接同步到本地，实质上是fetch+merge
+	$ git pull
+
+17、查看文件及目录命令
 $ cat <file>  //显示文件内容
 $ ls    //显示当前目录的内容
 
-		
+18、创建分支、切换分支命令
+	方式一：创建并切换
+	$ git checkout -b dev  //创建并切换到dev分支
+	方式二：先创建分支，在切换至分支
+	$ git branch dev  //创建分支
+	$ git checkout dev  //切换分支
+	
+19、查看当前分支命令
+$ git branch  //列出全部分支，当前分支前面带有*号标志
+
+20、合并分支命令
+$ git merge dev  //在当前分支下合并dev分支
+
+21、删除分支命令
+$ git branch -d dev
+
+22、冲突解决
+	若当前分支和需合并分支都分别有了新的提交（commit），就产生了冲突。
+	Git用<<<<<<<,=======,>>>>>>>标记出不同分支的内容。
+	修改内容后，重新添加(add)和提交(commit)。
+	
+23、查看分支的合并情况
+$ git log --graph  //查看分支合并图
+$ git log --graph --pretty=oneline --abbrev-commit  //--abbrev-commit 仅显示SHA-1的前几个字符，而非全部的40个字符 --pretty=oneline 一行显示
+
+	
