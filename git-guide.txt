@@ -97,6 +97,7 @@ $ git branch  //列出全部分支，当前分支前面带有*号标志
 
 20、合并分支命令
 $ git merge dev  //在当前分支下合并dev分支
+$ git merge --no-ff -m "merge with no-ff" dev  //禁用默认模式Fast forward，合并的同时创建新的commit.
 
 21、删除分支命令
 $ git branch -d dev
