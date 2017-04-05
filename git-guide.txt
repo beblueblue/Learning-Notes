@@ -71,7 +71,8 @@ $ git clone https://github.com/beblueblue/learngit.git  //Https协议方式
 
 16、GitHub远程库同步到本地
 	查看远程仓库命令
-	$ git remote -v
+	$ git remote  //查看远程库信息
+	$ git remote -v  //显示远程库详细信息
 	
 	同步方式一：从远程获取最新版本但不合并
 	$ git fetch origin master  //获取最新版本
@@ -100,7 +101,8 @@ $ git merge dev  //在当前分支下合并dev分支
 $ git merge --no-ff -m "merge with no-ff" dev  //禁用默认模式Fast forward，合并的同时创建新的commit.
 
 21、删除分支命令
-$ git branch -d dev
+$ git branch -d dev  //未被合并的分支，系统提示将丢失掉修改，无法删除
+$ git branch -D dev  //强行删除未被合并的分支
 
 22、冲突解决
 	若当前分支和需合并分支都分别有了新的提交（commit），就产生了冲突。
@@ -111,4 +113,52 @@ $ git branch -d dev
 $ git log --graph  //查看分支合并图
 $ git log --graph --pretty=oneline --abbrev-commit  //--abbrev-commit 仅显示SHA-1的前几个字符，而非全部的40个字符 --pretty=oneline 一行显示
 
+24、分支管理策略
+	合并分支时，Git默认使用Fast forward模式，此模式下，删除分支后，会丢掉分支信息。
+	通过--no-ff方式禁用Fast forward模式。参见第20条
+
+25、管理主线工作和临时工作
+	存储工作现场
+	$ git stash
+	查看已存储的工作
+	$ git stash list
+	恢复已存储的工作
+		恢复但不删除stash list
+		$ git stash appy  //恢复工作现场，默认list中最新一个
+		$ git stash drop  //删除已存储的工作，默认list中最新一个
+		恢复且删除stash list
+		$ git stash pop  //恢复的同时删除stash list，默认list中最新一个
+	指定恢复或删除
+	$ git stash apply stash@{0}  //先用git stash list查看指定工作的index
+	$ git stash drop stash@{0}
+	
+26、管理标签
+	1、查看标签
+	$ git tag  //查看所有标签
+	$ git show <tagname>  //查看标签具体信息
+	2、新建标签
+	$ git tag <tagname>  //新建一个标签，默认为HEAD添加标签，也可以指定一个commit id;
+	$ git tag <tagname> <commit id>  //指定提交添加标签
+	3、新建标签并添加信息
+	$ git tag -a <tagname> -m "blablabla..."
+	4、新建标签并使用PGP签名
+	$ git tag -s <tagname> -m "blablabla..."
+	5、推送标签
+	$ git push origin <tagname>  //推送指定标签
+	$ git push origin --tags  //推送所有标签
+	6、删除标签
+		本地标签
+		$ git tag -d v0.1  //删除本地标签
+		远程标签
+		$ git tag -d v0.9  //先删除本地标签
+		$ git push origin :refs/tags/v0.9  //后删除远程标签
+		
+27、自定义git
+	自定义颜色
+	$ git config --global color.ui true  
+	忽略特殊文件
+	在工作区的根目录下创建一个特殊的.gitignore文件，配置文件浏览：https://github.com/github/gitignore，
+	.gitignore文件本身要放到版本库里，并且可以对其进行版本管理！
+	自定义命令名称
+	$ git config --global alias.st status //用st表示status，配置文件放在.git/config文件中，[alias]后面就是自定义信息，删除自定义信息即删除对应行！
 	
