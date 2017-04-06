@@ -11,7 +11,7 @@
 		对象（Object）：由键-值组成的无序集合，键都是String类型，
 					    值可以说任意数据类型
 		
-2、字符串
+2、字符串String
 	（1）转义字符：\
 		\n表示换行，\t表示制表符，\\表示字符\  
 		ASCII字符可以用\x##形式的十六进制表示，例如：‘\x41’;  //完全等同于‘A’
@@ -22,15 +22,44 @@
 		'你好，'+name+'！'   可以写成  '你好，${name}！'
 	（3）操作字符串
 		String类型存在String.length属性，可以用String[index]获取。
-		注意：如果对String的某个引索赋值，不会报错，但是也不会改变String的值。
+		注意：如果对String的某个索引赋值，不会报错，但是也不会改变String的值。
 		方法：toUpperCase,toLowerCase,indexOf,substring
 			var s = 'Hello, Word';
 			s.toUpperCase();  //返回'HELLO, WORD!'
 			s.toLowerCase();  //返回'hello, word!'
 			s.indexOf('Word');  //返回7，注意空格符
 			s.indexOf('word');  //没有找到指定的字串，返回-1
-			s.substring(0,5);  //从引索0开始到5（不包括5），返回'Hello'
-			s.substring(7);  //从引索开始到结束，返回'Word'
-3、数组
+			s.substring(0,5);  //从索引0开始到5（不包括5），返回'Hello'
+			s.substring(7);  //从索引开始到结束，返回'Word'
+3、数组Array
+	（1）Array可以包含任意数据类型，并通过index来访问每个元素。
+		注意：直接对Array的length赋值或者通过索引（index）将对应的元素修改成新的值，均有可能改变
+		Array的大小。  //大多数其他编程语言不允许直接改变数组的大小，越界访问索引会报错，如Java。但
+		Javascript的Array不会有任何错误，建议不直接修改Array的大小，访问索引时要确保索引不越界。
+	（2）方法：
+			不改变原有数组
+				找到匹配元素的第一个索引，返回索引值： arr.indexOf(searchElement[,fromIndex=0]);
+					//未匹配，返回-1
+				截取数组，返回所截取部分Array： 
+					arr.slice();  //可以利用此方法复制一个Array
+					arr.slice(begin); arr.slice(begin,end); //但不包含end
+				排序Array，默认排序顺序是Unicode码点,返回新Array： 
+					arr.sort();
+					arr.sort(compareFunction);
+			改变原有数组，单一数组操作
+				Array的末尾添加若干元素，返回Array的新length： arr.push(element1,...,elementN);
+				Array删除最后一个元素，返回被删除的元素： arr.pop();  //如arr为空，返回undefined
+				Array的头部添加若干元素，返回Array的新length： arr.unshift(element1,...,elementN);
+				Array删除第一个元素，返回被删除的元素： arr.shift();  //如arr为空，返回undefined
+				颠倒Array中元素的位置，返回也是新Array： arr.reverse();
+					var Arr = ['one','two','three'];
+					newArr = Arr.reverse();
+					console.log(Arr);  //["three", "two", "one"]
+					console.log(newArr);  ////["three", "two", "one"]
+				同时删除和添加若干元素的“万能方法”,返回被删除元素组成的Array：
+					arr.splice(start);
+					arr.splice(start,deleteCount);  //如果deleteCount大于start后面的元素总和，
+						则start后面的元素全部删除；如果deleteCount小于等于0，返回空数组[]
+					arr.splice(srart,deleteCount,item1,item2,...)
 			
-		
+					
