@@ -1,0 +1,12 @@
+/*  Javascript中质数判别函数
+	element:需判别的数
+	返回值：质数返回ture,非质数返回false  */
+function isPrime(element){
+	var start = 2;
+	while(start <= Math.sqrt(element)){
+		if(element % start++ <1){
+			return false;
+		}
+	}
+	return element >1;
+}

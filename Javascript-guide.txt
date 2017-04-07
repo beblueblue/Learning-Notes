@@ -31,13 +31,14 @@
 			s.indexOf('word');  //没有找到指定的字串，返回-1
 			s.substring(0,5);  //从索引0开始到5（不包括5），返回'Hello'
 			s.substring(7);  //从索引开始到结束，返回'Word'
+			
 3、数组Array
 	（1）Array可以包含任意数据类型，并通过index来访问每个元素。
 		注意：直接对Array的length赋值或者通过索引（index）将对应的元素修改成新的值，均有可能改变
 		Array的大小。  //大多数其他编程语言不允许直接改变数组的大小，越界访问索引会报错，如Java。但
 		Javascript的Array不会有任何错误，建议不直接修改Array的大小，访问索引时要确保索引不越界。
 	（2）方法：
-			不改变原有数组
+			不改变原有数组，单一数组操作
 				找到匹配元素的第一个索引，返回索引值： arr.indexOf(searchElement[,fromIndex=0]);
 					//未匹配，返回-1
 				截取数组，返回所截取部分Array： 
@@ -46,6 +47,13 @@
 				排序Array，默认排序顺序是Unicode码点,返回新Array： 
 					arr.sort();
 					arr.sort(compareFunction);
+				Araay(类数组对象)的所有元素连接到一个字符串，返回字符串： arr.join(separator)
+					//separator默认为','；
+					多维数组会依index顺序转化，separator只起一次作业，多维数组内部用','相连；
+					null和undefined显示空字符，NaN仍为NaN.
+			不改变数组，多个数组操作
+				合并多个Array，返回新Array：Array.concat(value1,...,valueN)  
+				//对多维数组只进行降一维度拆解
 			改变原有数组，单一数组操作
 				Array的末尾添加若干元素，返回Array的新length： arr.push(element1,...,elementN);
 				Array删除最后一个元素，返回被删除的元素： arr.pop();  //如arr为空，返回undefined
@@ -60,6 +68,9 @@
 					arr.splice(start);
 					arr.splice(start,deleteCount);  //如果deleteCount大于start后面的元素总和，
 						则start后面的元素全部删除；如果deleteCount小于等于0，返回空数组[]
-					arr.splice(srart,deleteCount,item1,item2,...)
+					arr.splice(srart,deleteCount,item1,item2,...);
+
+4、对象
+	
 			
 					
