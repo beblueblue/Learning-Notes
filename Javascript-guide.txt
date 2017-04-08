@@ -75,7 +75,17 @@
 					arr.splice(srart,deleteCount,item1,item2,...);
 
 	1.4、对象Object
+		（1）用{...}表示一个对象，键值对以xx:xx形式声明，用','隔开。
+		建议在最后一个键值对末尾不加上','，低版本IE会报错。
+		（2）键名可以是一个有效的变量名（区分大小写，允许包含字母、数字、$、_，第一个字符不能是数字，
+		不允许空格和其他标点符号，禁止使用Javascript关键词、保留字全名）；如果包含特殊字符，
+		就必须用''括起来。访问是必须用['XXX']来访问。
+		（3）判断Object是否存在一个属性（继承的也算）：prop in ObjectName 
+		//prop为一个字符串类型或数组索引或Symbol类型（ES6新特性）的属性名，存在返回true
+		（4）判断一个属性是否是Object自身拥有的：obj.hasOwnProperty(prop)
+		//prop为一个字符串类型或Symbol类型，拥有返回true
 	1.5、函数Function
-	
+		（1）语法：new Function([arg1[,arg2[,...argN]],]functionBody)
+		注意：低效！创建时解析；而函数声明和函数表达式是与其他代码一起解析。
 			
 					
