@@ -170,7 +170,7 @@
 		注意：由于JavaScipt的函数调用不要求参数必须一致，因此可以忽略后两个参数，
 		只传入element或者value也可以。
 
-6、函数：最基本的一种代码抽象的方式
+6、函数定义和调用：最基本的一种代码抽象的方式
 	6.1函数初始化
 		方式一：function name(argument1,...){...}
 		方式二：var name = function (arg1,...){...};  //后面有个;，表示语句结束
@@ -193,10 +193,51 @@
 				}
 				//...
 			}
-		由于JavaScipt
+		由于JavaScript允许接收任意个函数，于是不得不用arguments来获取所有参数。
+		例：把非预期的参数放入rest数组中
+		function foo(a,b){
+			if(arguments.length>2){
+				var i, rest = [];
+				for(i = 2;i<arguments.length;i++){
+					rest.push(arguments[i]);
+				}
+			}
+			console.log('a='+a);
+			console.log('b='+b);
+			console.log('no expect arguments = '+rest);
+		}
 	6.4 rest参数
-	
+		ES6标准引入了rest参数，上述例子可以改写为
+		function foo(a,b,...rest){
+			console.log('a='+a);
+			console.log('b='+b);
+			console.log('no expect arguments = '+rest);
+		}
+		rest参数只能写在最后面，前面用...标识。
+		注意：如果传入的参数连正常定义的参数都没填满，rest参数会接收一个空数组，而不是undefined。
+	6.5 注意 return语句坑
+		JavaScript引擎有一个在行末自动添加分号的机制！
+		基于此，return有个大坑！
+		例：return语句块不执行的坑
+		function foo(){
+			return {name: 'foo'};
+		}
+		foo();  //{name: 'foo'}
+		如果把return语句拆成两行：
+		function foo(){
+			return
+				{name: 'foo'};
+		}
+		foo();  //undefined
+		在这里return就变成了return; 所以正确的多行写法是
+		function foo(){
+			return{  //这里不会自动加分号因为{表示语句尚未结束
+				name: 'foo'
+			};
+		}
 
+7、函数变量作用域
+	
 		
 	
 		
