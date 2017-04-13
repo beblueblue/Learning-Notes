@@ -4,6 +4,7 @@
 		Number：整型，浮点数，NaN,无穷大。  //JavaScipt中%是求余运算
 		字符串（String）
 		布尔值（Boolean）:逻辑运算和比较运算的结果值  //在JavaScipt中坚持使用===比较
+			JavaScipt把null、undefined、0、NaN和空字符串''视为false，其他值一概视为true。
 		null:表示一个“空”的值  //Java也用null，Swift用nil，Python用None
 		undefined:表示值未定义  //仅仅在判断函数参数是否传递的情况下有用
 		Symbol:ES6新定义，在其他编程语言中symbol也被称为原子（atoms）。
