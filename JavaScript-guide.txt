@@ -288,9 +288,10 @@
 		};
 	8.2 apply 
 		在一个独立的函数调用中，根据是否strict模式，this指向undefined或window
-		Syntax: fun.apply(thisArg,[argsArray]);
+		Syntax: fun.apply(thisArg[,argsArray]);
 		thisArg:将this指向绑定改为thisArg; 
-		[argsArray]函数本身的参数，可以用arguments关键字还原原函数。
+		[argsArray]可选项，一个数组或者类数组对象，其中的数组元素将作为单独的参数传给 fun 函数。
+		巧妙利用argumens关键字捕获参数。
 	8.3 call
 		与apply方法相似，只是函数参数不以数组传入，而是逐个传入。
 		Syntax: fun.call(thisArg,arg1,arg2,...)
@@ -304,6 +305,11 @@
 						index(第二个)，数组正在处理的当前元素的索引；
 						array(第三个)，map方法被调用的数组。
 	thisArg: 可选，执行callback函数时使用的this值。
+	注意：map 方法会给原数组中的每个元素都按顺序调用一次 callback 函数。
+	如果callback所需参数与map默认传入的不一致，需特别注意！有坑！！！！
+	callback 每次执行后的返回值（包括 undefined）组合起来形成一个新数组。 
+	callback 函数只会在有值的索引上被调用；
+	那些从来没被赋过值或者使用 delete 删除的索引则不会被调用。
 	例：把Array的所有数字转为字符串
 		var arr = [1,2,3,4,5];
 		arr.map(String);  //['1','2','3','4','5']
@@ -320,11 +326,7 @@
 			return a.concat(b);
 		},[]);  //flattened is [0,1,2,3,4,5]
 	
-	    var s_arr = s.split('');
-    var s2_arr = s_arr.map(function(z){z*1});
-    return s2_arr.reduce(function(x,y){
-        return x*10+y;
-    });
+	
 	
 		
 
