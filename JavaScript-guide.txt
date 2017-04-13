@@ -264,4 +264,75 @@
 		const在声明的同时必须初始化，可以同时声明多个常量。
 		const常量不可以被重复声明(SyntaxError)，也不能对其直接赋值修改(TypeError)。
 		
+8、函数-方法
+	绑定到对象上的函数称为方法，和普通函数基本没有区别，方法内部具有this关键字
+	8.1 this关键字
+	谁调用this，就指向谁！
+	JavaScriptd中以对象形式调用了this，就指向被调用的对象；单独调用函数，视全局对象调用了该函数，
+	所以this指向全局对象，即window。
+	注意：ECMA标准规定，在strict模式下让函数的this指向undefind。
+	在strict模式下，要让方法内部定义的函数的this指向该方法所绑定的对象，可以用that变量先捕获this。
+	例：
+		'use strict';
+		var xiaoming = {
+			name: '小明',
+			birth: 1990,
+			age: function(){
+				var that = this;  //在方法内部一开始就捕获this，指向对象xiaoming
+				function getAgeFromBirth() {
+					var y = new Date().getFullYear();
+					return y - that.birth;  //用that而不是this，这里的this指向undefind
+				}
+				return getAgeFromBirth();
+			}
+		};
+	8.2 apply 
+		在一个独立的函数调用中，根据是否strict模式，this指向undefined或window
+		Syntax: fun.apply(thisArg,[argsArray]);
+		thisArg:将this指向绑定改为thisArg; 
+		[argsArray]函数本身的参数，可以用arguments关键字还原原函数。
+	8.3 call
+		与apply方法相似，只是函数参数不以数组传入，而是逐个传入。
+		Syntax: fun.call(thisArg,arg1,arg2,...)
+
+9、高阶函数 Higher-order function
+	由于JavaScript的变量可以指向函数，函数的参数能接受变量，那么一个函数接受另一个函数作为参数，
+	此类函数称之为高阶函数。
+	9.1 map() 定义在JavaScript的Array中。
+	Syntax: arr.map(callback[,thisArg]) //返回值是一个新数组
+	callback有三个参数：currentValue(第一个)，数组正在处理的当前元素；
+						index(第二个)，数组正在处理的当前元素的索引；
+						array(第三个)，map方法被调用的数组。
+	thisArg: 可选，执行callback函数时使用的this值。
+	例：把Array的所有数字转为字符串
+		var arr = [1,2,3,4,5];
+		arr.map(String);  //['1','2','3','4','5']
+	9.2 reduce() 定义在JavaScript的Array中。
+	Syntax: arr.reduce(callback[,initialValue])  //返回值是callback函数处理的结果
+	callback有四个参数：accumulator(第一个)，上一次调用回调返回的值，初始是initialValue
+						currentValue(第二个)，数组正在处理的当前元素；
+						index(第三个)，数组正在处理的当前元素的索引；
+						如果提供了initialValue,从0开始；否则从1开始
+						array(第四个)，reduce方法被调用的数组。
+	initialValue: 可选项，其值用于第一次调用callback的第一个参数。
+	例：数组扁平化
+		var flattened = [[0,1],[2,3],[4,5]].reduce(function(a,b){
+			return a.concat(b);
+		},[]);  //flattened is [0,1,2,3,4,5]
+	
+	    var s_arr = s.split('');
+    var s2_arr = s_arr.map(function(z){z*1});
+    return s2_arr.reduce(function(x,y){
+        return x*10+y;
+    });
+	
+		
+
+
+
+
+
+
+
+
 					
