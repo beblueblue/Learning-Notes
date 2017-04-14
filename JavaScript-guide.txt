@@ -300,8 +300,8 @@
 9、高阶函数 Higher-order function
 	由于JavaScript的变量可以指向函数，函数的参数能接受变量，那么一个函数接受另一个函数作为参数，
 	此类函数称之为高阶函数。
-	9.1 map() 定义在JavaScript的Array中。
-	Syntax: arr.map(callback[,thisArg]) //返回值是一个新数组
+	9.1 map() 定义在JavaScript的Array中，实质上是单个元素的遍历操作。
+	Syntax: arr.map(callback[,thisArg]) //返回值是一个新数组，不改变原有数组
 	callback有三个参数：currentValue(第一个)，数组正在处理的当前元素；
 						index(第二个)，数组正在处理的当前元素的索引；
 						array(第三个)，map方法被调用的数组。
@@ -314,8 +314,8 @@
 	例：把Array的所有数字转为字符串
 		var arr = [1,2,3,4,5];
 		arr.map(String);  //['1','2','3','4','5']
-	9.2 reduce() 定义在JavaScript的Array中。
-	Syntax: arr.reduce(callback[,initialValue])  //返回值是callback函数处理的结果
+	9.2 reduce() 定义在JavaScript的Array中，实质上两个元素的遍历操作。
+	Syntax: arr.reduce(callback[,initialValue])  //返回值是callback函数处理的结果，不改变原有数组
 	callback有四个参数：accumulator(第一个)，上一次调用回调返回的值，初始是initialValue
 						currentValue(第二个)，数组正在处理的当前元素；
 						index(第三个)，数组正在处理的当前元素的索引；
@@ -326,6 +326,43 @@
 		var flattened = [[0,1],[2,3],[4,5]].reduce(function(a,b){
 			return a.concat(b);
 		},[]);  //flattened is [0,1,2,3,4,5]
+	9.3 filter() 定义在JavaScript的Array中,实质上是过滤操作。
+	filter为数组中的每个元素调用一次callback函数,并利用所有使得 allback返回true或等价于true的值
+	创建一个新数组。callback只会在已经赋值的索引上被调用，对于那些已经被删除或者从未被赋值的索引
+	不会被调用。那些没有通过 callback 测试的元素会被跳过，不会被包含在新数组中。
+	Syntax: arr.filter(callback[,thisArg])  //返回值是一个新数组，不改变原有数组
+	callback有三个参数：currentValue(第一个)，数组正在处理的当前元素；
+						index(第二个)，数组正在处理的当前元素的索引；
+						array(第三个)，map方法被调用的数组。
+	thisArg: 可选，执行callback函数时使用的this值。
+	例：把Array中的空字符串删掉
+		var arr = ['A', '', 'B', null, undefined, 'C', '  '];
+		var r = arr.filter(function (s) {
+			return s && s.trim(); // 注意：IE9以下的版本没有trim()方法
+		});
+		console.log(r); // ['A', 'B', 'C']
+		trim的原生JS
+		if (!String.prototype.trim) {
+			String.prototype.trim = function () {
+			return this.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
+			};
+		}
+	9.4 sort() 定义在JavaScript的Array中,实质上是排序操作。此函数改变原有数组,返回新数组。
+	Syntax: arr.sort()  //未指定compareFunction，元素会转换为字符串，按逐个字符的Unicode位点排序
+			arr.sort([compareFunction])  //可选，传入两个参数（a,b）若函数返回值：
+				小于0，a排前；等于0，相对位置不变；大于0，b排前。
+				注意：必须总是对相同的输入返回相同的比较结果，否则排序的结果将是不确定的。
+	例：对纯数字数组进行升序
+			var numbers = [4, 2, 5, 1, 3];
+			var newNumbers = numbers.sort(function(a, b) {
+				return a - b;
+			});
+			console.log(numbers);  // [1, 2, 3, 4, 5]
+			console.log(newNumbers);  // [1, 2, 3, 4, 5]
+			console.log(numbers === newNumbers);  //true
+			
+10、闭包
+
 	
 	
 	
