@@ -237,7 +237,7 @@
 			};
 		}
 
-7、函数变量作用域
+7、函数变量作用域 function scope
 	7.1 作用域
 		由于JavaScript的函数可以嵌套，此时，内部函数可以访问外部函数定义的变量，反过来则不行。
 		注意：JavaScript的函数在查找变量时从自身函数定义开始，从内向外查找。如果内部函数定义了
@@ -265,7 +265,7 @@
 		const在声明的同时必须初始化，可以同时声明多个常量。
 		const常量不可以被重复声明(SyntaxError)，也不能对其直接赋值修改(TypeError)。
 		
-8、函数-方法
+8、函数-方法 function-method
 	绑定到对象上的函数称为方法，和普通函数基本没有区别，方法内部具有this关键字
 	8.1 this关键字
 	谁调用this，就指向谁！
@@ -361,8 +361,52 @@
 			console.log(newNumbers);  // [1, 2, 3, 4, 5]
 			console.log(numbers === newNumbers);  //true
 			
-10、闭包
-
+10、闭包 Closures
+	10.1 闭包是一种特殊的对象。它由两部分构成：函数，以及创建该函数的环境。
+	环境由闭包创建时在作用域中的任何局部变量组成。
+	10.2 注意：如果不是因为某些特殊任务而需要闭包，在没有必要的情况下，在其它函数中创建函数是不明智的，
+	因为闭包对脚本性能具有负面影响，包括处理速度和内存消耗。
+	10.3 返回闭包时牢记的一点就是：返回函数不要引用任何循环变量，或者后续会发生变化的变量。
+	如果一定要引用循环变量怎么办？方法是再创建一个函数，用该函数的参数绑定循环变量当前的值，
+	无论该循环变量后续如何更改，已绑定到函数参数的值不变。
+	ES6标准引入的块级作用域let，可以修复这个bug。
+	10.4 一个立即执行的匿名函数写法：(function(){...})();
+	10.5 利用闭包实现私有变量封装。
+	例：创建一个计算器
+		'use strict'
+		function create_counter(initial){
+			var x = initial || 0;
+			return {
+				inc: function(){
+					x ++;
+					return x;
+				}
+			}
+		}
+	使用举例：var c1 = create_counter();
+			  c1.inc();  //1
+			  c1.inc();  //2
+			  
+			  var c2 = create_counter(10);
+			  c2.inc();  //11
+			  c2.inc();  //12
+	10.6 闭包可以把多参数函数变成单参数函数
+	例：构建平方和立法函数pow2,pow3
+		//闭包原函数Math.pow
+		function makePow(n){
+			return function(x){
+				return Math.pow(x,n);
+			}
+		}
+		//创建两个新函数pow2,pow3
+		var pow2 = makePow(2);
+		var pow3 = makePow(3);
+		//测试
+		console.log(pow2(5));  //25
+		console.log(pow3(7));  //343
+		
+11、箭头函数
+		
 	
 	
 	
