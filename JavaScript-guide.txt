@@ -405,11 +405,22 @@
 		console.log(pow2(5));  //25
 		console.log(pow3(7));  //343
 		
-11、箭头函数
-		
+11、箭头函数 Arrow Function
+	11.1 箭头函数表达式的语法比函数表达式短，并且不绑定自己的 this，arguments，super或new.target。
+	此外，箭头函数总是匿名的。
+	11.2 如果要返回一个对象{foo:x},需要把它()起来，如：var func = () => ({foo:x});
+	11.3 this 箭头函数看上去是匿名函数的一种简写，但实际上，箭头函数和匿名函数有个明显的区别：
+	箭头函数内部的this是词法作用域，由上下文确定。
+	11.4 arguments 箭头函数不会在其内部暴露出arguments对象：
+	arguments.length, arguments[0], arguments[1] 等等，都不会指向箭头函数的 arguments，
+	而是指向了箭头函数所在作用域的一个名为arguments的值（如果有的话，否则，就是 undefined。)
 	
-	
-	
+12、生成器 generator
+	12.1 生成器对象是由一个 generator function 返回的,并且它符合可迭代协议和迭代器协议。
+	12.2 调用generator对象的方法
+		gen.next();
+		gen.return(value);
+		for...of循环
 		
 
 
