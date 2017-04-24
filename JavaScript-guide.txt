@@ -761,6 +761,16 @@
 	应该始终坚持使用httpOnly。
 	18.6 history (保存了浏览器的历史记录)
 	任何情况，你都不应该使用history这个对象了!
+	18.7 操作DOM
+	querySelector()和querySelectorAll(),无法查找带伪类状态的元素。
+	前者返回单个element，后者返回Array。
+	兼容性：IE<8不支持，IE8部分支持。
+		更新DOM
+		innerHTML和innerText或textContent属性
+		前者可以设置HTML标签，后者innerText不返回隐藏元素的文本，textContent返回所有文本
+		兼容性：IE<9不支持textContent
+		插入DOM
+		
 	
 		
 	
