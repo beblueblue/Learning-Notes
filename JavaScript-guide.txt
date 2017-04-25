@@ -819,7 +819,9 @@
 		回调
 		在JavaScript中，浏览器的JavaScript执行引擎在执行JavaScript代码时，总是以单线程模式执行。
 		在JavaScript中，执行多任务实际上都是异步调用，发起异步操作，利用回调函数完成任务。
-	
+	18.10 AJAX
+	18.11 Promise
+	18.12 Canvas
 
 		
 	
