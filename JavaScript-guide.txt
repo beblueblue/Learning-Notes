@@ -823,5 +823,24 @@
 	18.11 Promise
 	18.12 Canvas
 
+19、jQuery
+	优势：消除浏览器差异；简洁的操作DOM的方法；轻松实现动画、修改CSS等各种操作
+	版本：1.X --> 支持IE6、7、8；  2.X --> 代码更精简
+	使用方式：在页面<head>引入jQuery文件
+	$符号：本质上是一个函数，也是对象，如果$被占用，调用jQuery.noConflict()还原变量。
+	19.1 选择器
+	注意：返回的是jQuery对象，类似数组，每个元素都是一个引用了DOM节点的对象。
+	jQuery对象和DOM对象相互转化：
+		var div = $('#abd');  //div为jQuery对象
+		var divDOM = div.get(0);  //获取div类数组中的第一个DOM元素，divDOM为DOM对象
+		var another = $(divDOM);  //重新把divDOM包装成jQuery对象。annther为jQuery对象
+	按ID查询：$('#id')
+	按tag查询：$('tagName')
+	按class查询：$('.className')
+	按属性查找：$('[atrName=value]')
+	组合查询：逻辑与 --> $('.red.green')  //注意没有空格
+			  逻辑或 --> $('.red,.green')  //多个选择器用,组合起来
+			  模糊匹配 ^,$,!......
+			  多项组合 $('input[name=email]')  //匹配<input name="email">
 		
 	
