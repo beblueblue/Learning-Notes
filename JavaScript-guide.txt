@@ -866,3 +866,27 @@
 		$('div:visible');  // 所有可见的div
 		$('div:hidden');  // 所有隐藏的div
 	19.2 查找和过滤
+	不同层级查找：在某个节点的所有子节点中查找，$(selector).find()
+				  在当前节点开始向上查找，$(selector).parent()
+	同一层级查找：向下查找，$(selector).next()
+				  向上查找，$(selector).prev()
+	过滤：filter()方法可以过滤掉不符合选择器条件的节点
+		  mar()方法把一个jQuery对象包含的若干DOM节点转化为其他对象
+	first()、last()、slice()用于处理jQuery对象包含的多余DOM节点。
+	19.3 操作DOM
+	修改Text和HTML：text()和html()  //无参数调用是获取文本或HTML，传入参数就变成设置文本或HTML
+	注意：即使选择器没有返回任何DOM节点，调用jQuery对象的方法仍然不会报错。
+	修改CSS：css('name','value')  //name可以用'background-color'和'backgroundColor'两种格式。
+			 hasClass('name')  //返回Boolean值，class是否包含name
+			 addClass('name')和removeClass('name')  //添加和删除Class
+	注意：几乎jQuery对象的所有方法都返回一个jQuery对象（可能是新的也可能是自身），
+	这样我们可以进行链式调用，非常方便。
+	显示和隐藏DOM：show()和hide()  //无参数调用,只影响DOM节点的显示
+	修改DOM信息：$(selector).width()、$(selector).height()等  //无参数调用为获取，参数则为设置
+	操作节点属性：attr('name')  //存在返回value，不存在返回undefined
+				  removeAttr('name')  //删除属性
+				  prop()与attr()类似，不过prop()对checked和selector属性的处理更合理；
+				  不过用is()方法判断更好！
+	操作表单：val()  //无参数调用为获取，参数则为设置
+	
+	
