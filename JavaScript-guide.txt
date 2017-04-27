@@ -888,5 +888,12 @@
 				  prop()与attr()类似，不过prop()对checked和selector属性的处理更合理；
 				  不过用is()方法判断更好！
 	操作表单：val()  //无参数调用为获取，参数则为设置
+	19.4 修改DOM结构
+	添加DOM：暴力插入 --> html()
+			 子节点插入 --> append()添加到最后；prepend()添加到最前
+			 同级节点 --> after();before()
+	删除节点；remove()
+	19.5 事件
+	
 	
 	
