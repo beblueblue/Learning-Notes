@@ -893,7 +893,58 @@
 			 子节点插入 --> append()添加到最后；prepend()添加到最前
 			 同级节点 --> after();before()
 	删除节点；remove()
-	19.5 事件
-	
-	
+	19.5 事件event
+	JavaScript在浏览器中以单线程模式运行
+	鼠标事件：
+		click: 鼠标单击时触发； 
+		dblclick：鼠标双击时触发； 
+		mouseenter：鼠标进入时触发； 
+		mouseleave：鼠标移出时触发； 
+		mousemove：鼠标在DOM内部移动时触发； 
+		hover：鼠标进入和退出时触发两个函数。
+	键盘事件：仅作用在当前焦点的DOM上，通常是<input>和<textarea>。
+		keydown：键盘按下时触发； 
+		keyup：键盘松开时触发； 
+		keypress：按一次键后触发。
+	其他事件：
+		focus：当DOM获得焦点时触发； 
+		blur：当DOM失去焦点时触发； 
+		change：当<input>、<select>或<textarea>的内容改变时触发； 
+		submit：当<form>提交时触发； 
+		ready：当页面被载入并且DOM树完成初始化后触发，仅作用于document对象。
+		例：ready事件的简化写法
+		$(document).on('ready',function(){...}); ==> $(document)..ready(function(){...}); ==>
+		$(function(){...});
+	事件参数：
+		所有事件都会传入Event对象作为参数
+		event.pageX：鼠标当前的X坐标；
+		event.pageY：鼠标当前的Y坐标；
+		event.which：鼠标左键返回1，中键返回2，右键返回3；
+		IE8 及其更早版本不支持 which 属性。不支持的浏览器可使用 keyCode 属性
+		兼容代码：var x = event.which || event.keyCode; 
+		event.type：事件类型；
+		event.target：触发事件的DOM元素；
+		等等
+	取消绑定：
+		$(selector).off(events[,selector][handler]));
+		注意对匿名函数的解绑！
+	事件触发条件：
+		注意：事件的触发总是由用户操作引发的。
+		如果用JavaScript代码去改动文本框的值，将不会触发change事件；
+		代码触发change，可以直接调用无参数的change()方法！相对于.trigger('change')。
+	浏览器安全限制：
+		在浏览器中，有些JavaScript代码只有在用户触发下才能执行。如：window.open()函数。
+	19.6 动画animate
+		show/hide 与 toggle([duration][,easing][,complete])  //显示和隐藏DOM(从左上角)
+		slideUp/slideDown 与 slideToggle([duration][,easing][,complete])  
+			//显示和隐藏DOM(从上边放下卷起)
+		fadeIn/fadeOut 与 fadeToggle([duration][,easing][,complete])
+			//淡入淡出
+		自定义动画：animate(peoperties[duration][,easing][,complete])
+		串行动画：jQuery的动画效果还可以串行执行，通过delay()方法还可以实现暂停。
+		注意：jQuery也没有实现对background-color的动画效果，用animate()设置background-color也没有
+		效果。这种情况下可以使用CSS3的transition实现动画效果。
+	19.7 AJAX
+	19.8 扩展
+		
 	
