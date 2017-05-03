@@ -945,6 +945,87 @@
 		注意：jQuery也没有实现对background-color的动画效果，用animate()设置background-color也没有
 		效果。这种情况下可以使用CSS3的transition实现动画效果。
 	19.7 AJAX
+	jQuery.ajax(url[,settings])
+		常用的选项有：
+		async：是否异步执行AJAX请求，默认为true，千万不要指定为false；
+		method：发送的Method，缺省为'GET'，可指定为'POST'、'PUT'等；
+		contentType：发送POST请求的格式，默认值为
+			'application/x-www-form-urlencoded; charset=UTF-8'，也可以指定为
+			text/plain、application/json；
+		data：发送的数据，可以是字符串、数组或object。如果是GET请求，data将被转换
+			成query附加到URL上，如果是POST请求，根据contentType把data序列化成合适的格式；
+		headers：发送的额外的HTTP头，必须是一个object；
+		dataType：接收的数据格式，可以指定为'html'、'xml'、'json'、'text'等，缺省情况下
+			根据响应的Content-Type猜测。
+	注意：jQuery的jqXHR对象类似一个Promise对象，我们可以用链式写法来处理各种回调。
+	get() 例：查询
+		var jqxhr = $.get('/path/to/resource', {
+			name: 'Bob Lee',
+			check: 1
+		});
+		第二个参数如果是object，jQuery自动把它变成query string然后加到URL后面，实际的URL是：
+		/path/to/resource?name=Bob%20Lee&check=1
+	post() 例：修改
+		var jqxhr = $.post('/path/to/resource', {
+			name: 'Bob Lee',
+			check: 1
+		});
+		传入的第二个参数默认被序列化为application/x-www-form-urlencoded，实际构造的数据
+		name=Bob%20Lee&check=1作为POST的body被发送。
+	getJSON() 例：
+		var jqxhr = $.getJSON('/path/to/resource', {
+			name: 'Bob Lee',
+			check: 1
+		}).done(function (data) {
+			// data已经被解析为JSON对象了
+		});
+	安全限制：如果需要使用JSONP,可以在ajax()中设置jsonp: 'callback'，让jQuery实现JSONP跨域加载数据。
 	19.8 扩展
+	编写jQuery插件：给jQuery对象绑定一个新方法是通过扩展$.fn对象实现的。
+		例：编写一个高亮色插件highlight1();
+		$.fn.highlight = function (options) {
+			// 合并默认值和用户设定值:
+			var opts = $.extend({}, $.fn.highlight.defaults, options);
+			this.css('backgroundColor', opts.backgroundColor).css('color', opts.color);
+			return this;
+		}
+		// 设定默认值:
+		$.fn.highlight.defaults = {
+			color: '#d85030',
+			backgroundColor: '#fff8de'
+		}
+	注意：函数内部的this在调用时被绑定为jQuery对象，故函数内部代码可以正常调用所有jQuery对象的方法。
+		return this;  //因为jQuery对象支持链式操作，我们自己写的扩展方法也要能继续链式下去。
+		$.extend(target, obj1, obj2, ...)，它把多个object对象的属性合并到第一个target对象中，
+		遇到同名属性，总是使用靠后的对象的值，也就是越往后优先级越高。
+	编写jQuery插件原则：	
+		1、给$.fn绑定函数，实现插件的代码逻辑；
+		2、插件函数最后要return this;以支持链式调用；
+		3、插件函数要有默认值，绑定在$.fn.<pluginName>.defaults上；
+		4、用户在调用时可传入设定值以便覆盖默认值。
+	针对特定元素的扩展：
+		利用jQuery的选择器支持filter()方法来过滤出特定元素！
+		例：添加一个bootstrap外链效果
+		$.fn.external = function () {
+			// return返回的each()返回结果，支持链式调用:
+			return this.filter('a').each(function () {
+				// 注意: each()内部的回调函数的this绑定为DOM本身!
+				var a = $(this);
+				var url = a.attr('href');
+				if (url && (url.indexOf('http://')===0 || url.indexOf('https://')===0)) {
+					a.attr('href', '#0')
+					.removeAttr('target')
+					.append(' <i class="uk-icon-external-link"></i>')
+					.click(function () {
+						if(confirm('你确定要前往' + url + '？')) {
+							window.open(url);
+						}
+					});
+				}
+			});
+		}
+20、错误处理
+		
+		
 		
 	
