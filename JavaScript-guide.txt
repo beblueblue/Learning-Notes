@@ -1058,7 +1058,7 @@
 						"env": {
 							"NODE_ENV": "development"
 						},
-						"console": internalConsole,
+						"console": "internalConsole",
 						"sourceMaps": false,
 						"outFiles": []
 					}
@@ -1082,10 +1082,66 @@
 			} else {
 				console.log('browser');
 			}
-		fs模块 （文件系统）
+	fs模块 （文件系统）
 		http://nodejs.cn/api/en/fs.html#fs_fs_read_fd_buffer_offset_length_position_callback
 			All the methods have asynchronous and synchronous forms.
-			
-	
-		
+		引入fs模块：var fs = require('fs');
+		异步读文件：fs.readFile(file[,options],callback(err,data));
+			当正常读取时，err参数为null，data参数为读取到的数据；
+			当读取错误时，err参数代表一个错误对象，data为undefind。
+			通常的判断逻辑：if(err){
+								//出错了
+							}else{
+								//正常
+							}
+		同步读文件：var data = fs.readFileSync(file[,options]);
+			同步方法相比异步方法，多了Sync后缀；
+			data被函数直接返回，发送错误时，需要用try..catch捕获该错误：
+				try{
+					var data = fs.readFileSync('sample.txt','utf-8');
+					console.log(data);
+				}catch(err){
+					//出错了
+				}
+		写文件：fs.writeFile(file,data[,option],callback(err));
+		文件信息：fs.stat(path,callback(err,stats));
+		注意：由于Node环境执行的JavaScript代码是服务器端代码，所以，绝大部分需要在服务器运行期
+		反复执行业务逻辑的代码，必须使用异步代码，否则，同步代码在执行时期，服务器将停止响应，
+		因为JavaScript只有一个执行线程。
+			服务器启动时如果需要读取配置文件，或者结束时需要写入到状态文件时，可以使用同步代码，
+		因为这些代码只在启动和结束时执行一次，不影响服务器正常运行时的异步执行。
+	stream模块 （数据流）
+	Types of Streams
+		Readable -streams from which data can be read (fs.createReadStream());
+		writable -streams to which data can be written (fs.creatWriteStream());
+		Duplex  -streams that are both Readable and Writable (net.Socket);
+		Transform -Duplex streams that can modify or transform the data as it is written and read
+			(zlib.createDeflate())
+		在Node.js中，流也是一个对象，我们只需要响应流的时间就可以了：
+		var rs = fs.createReadStream(path[,options]);
+		对于Readable, data时间表示流的数据已经可以读取了，end事件表示这个流已经到末尾了，
+	没有数据可以读取了，error事件表示出错了。data事件可能有多次，每次都chunk是流的一部分数据。
+		var ws = fs.createWritStream(path[,options]);
+		对于Writable, 只需要不断调用write()方法，最后以end()结束。
+		readable.pipe(destination[,options]);  
+		//destination <stream.Writable> The destination for writing data
+		//options <Object> Pipe options 
+		//options~end <Boolean>End the writer when the reader ends. Defaults to true.
+	http模块 （HTTP协议）
+		应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象。
+		var server = http.createServer(callback(request,response));
+		request对象封装了HTTP请求，我们调用request对象的属性和方法就可以拿到所有HTTP请求的信息；
+		response对象封装了HTTP响应，我们操作response对象的方法，就可以把HTTP响应返回给浏览器。
+		server.listen(handle[,callback]);
+		server.listen(path[,callback]);
+		server.listen([port][,hostname][,backlog][,callback]);
+		server.listen()方法可以被多次调用，新声明会覆盖旧声明。
+	url模块 （网址解析）
+		url.parse(urlString[,parseQueryString][,slashesDenoteHost]);
+		//The url.parse() method takes a URL string, parses it, and returns a URL object.
+	path模块 （文件和目录路径）
+		path.resolve([...paths]);  //segments to absolute
+		path.join([...paths]);  //join the segments
+		path.format(pathObject);  //Object to string
+	crypto模块
 	
