@@ -1144,4 +1144,68 @@
 		path.join([...paths]);  //join the segments
 		path.format(pathObject);  //Object to string
 	crypto模块
+		crypto模块的目的是为了提供通用的加密和哈希算法。
+		MD5和SHA1：const hash = crypto.createHash(algorithm);  
+		//algorithm -> md5, sha1, sha512, sha256
+		Hmac: const hmac = crypto.createHmac(algorithm);  
+		//algorithm -> sha512, sha256; The key is the HMAC key.
+		AES: 一种常用的对称加密算法。
+		//引入crypto模块
+		const crypto = require('crypto');
+		//构建AES加密函数,返回数据（包含加密内容和未加密内容）
+		//data需要加密的数据
+		//key用于派生密钥和初始化向量（IV），其值为'latin1'或Buffer
+		function aesEncrypt(data, key) {
+			const cipher = crypto.createCipher('aes192', key);
+			var crypted = cipher.update(data, 'utf8', 'hex');
+			crypted += cipher.final('hex');
+			return crypted;
+		}
+		//构建AES解密函数,返回数据（包含已解密和未解密）
+		//encrypted需要解密的数据
+		//key为密钥
+		function aesDecrypt(encrypted, key) {
+			const decipher = crypto.createDecipher('aes192', key);
+			var decrypted = decipher.update(encrypted, 'hex', 'utf8');
+			decrypted += decipher.final('utf8');
+			return decrypted;
+		}
+		Diffie-Hellman: 一种密钥交换协议。
+		const crypto = require('crypto');
+
+		//xiaoming's keys:
+		//创建小明的密钥交换对象，素数长度为512bit
+		var ming = crypto.createDiffieHellman(512);
+		//生成小明的密钥，返回Buffer
+		var ming_keys = ming.generateKeys();
+
+		//获取小明的素数
+		var prime = ming.getPrime();
+		//获取小明的生成器
+		var generator = ming.getGenerator();
+
+		console.log('Prime: '+prime.toString('hex'));
+		console.log('Generator: '+generator.toString('hex'));
+
+		//xiaohong's keys:
+		var hong = crypto.createDiffieHellman(prime,generator);
+		var hong_keys = hong.generateKeys();
+
+		//exchange and generate secret:
+		var ming_secret = ming.computeSecret(hong_keys);
+		var hong_secret = hong.computeSecret(ming_keys);
+
+		//print secret:
+		console.log('Secret of Xiao Ming: '+ming_secret.toString('hex'));
+		console.log('Secret of Xiao Hong: '+hong_secret.toString('hex'));
+		证书：crypto模块也可以处理数字证书。数字证书通常用在SSL连接，也就是Web的https连接。一般情况
+		下，https连接只需要处理服务器端的单向认证，如无特殊需求（例如自己作为Root给客户发认证证书），
+		建议用反向代理服务器如Nginx等Web服务器去处理证书。
+23、Web开发
+	23.1 各类框架
+	常见的Web框架包括：Express，Sails.js，koa，Meteor，DerbyJS，Total.js，restify……
+	ORM框架比Web框架要少一些：Sequelize，ORM2，Bookshelf.js，Objection.js……
+	模版引擎PK：Jade，EJS，Swig，Nunjucks，doT.js……
+	测试框架包括：Mocha，Expresso，Unit.js，Karma……
+	构建工具有：Grunt，Gulp，Webpack……
 	
