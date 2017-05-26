@@ -62,3 +62,150 @@
 		<a href="javascript:void(document.body.style.backgroundColor='green');">
 			Click here for green background
 		</a>
+2.语句
+	2.1 block语句
+	用花括号括起来的就是块语句block
+	ES6中，可以用let声明块级作用域
+	var x = 1;
+	{
+		var x = 2;
+	}
+	console.log(x);  //2
+	
+	let x = 1;
+	{
+		let x = 2;
+	}
+	console.log(x);  //1
+	
+	const x = 1;
+	{
+		const x = 2;
+	}
+	console.log(x);  //1	
+	
+	2.2 var语句
+	误区：var a=b=1;  //b会隐式地定义成全局变量
+	function foo(){
+		var a = b =1;
+	}
+	foo();
+	
+	console.log(typeof a);  //'undefined'
+	console.log(typeof b);  //'number'
+	
+	2.3 try...catch语句  //当我们用catch捕获错误时，一定要写处理语句！
+	三种形式：
+		//完整的try...catch...finally: 无论是否有异常，finally语句都会执行
+		try{
+			...
+		} catch (e) {
+			...
+		} finally {
+			...
+		}
+		//只有try...catch，没有finally:
+		try{
+			...
+		} catch (e) {
+			...
+		}
+		//只有try...finally，没有catch：
+		try {
+			...
+		} finally {
+			...
+		}
+	语句嵌套：
+		//try语句发生嵌套，内部未捕获错误
+		try {
+			try {
+				throw new Error("oops");
+			}
+			finally {
+				console.log("finally");
+			}
+		}
+		catch (e) {
+			console.error("outer",e.message);
+		}
+		/*
+			"finally"
+			"outer oops"
+		*/
+		
+		//try语句发生嵌套，内部捕获错误，错误只会被内部处理，外部无法捕获
+		try {
+			try {
+				throw new Error("oops");
+			}
+			catch (e){
+				console.error("inner", e.message);
+			}
+			finally {
+				console.log("finally");
+			}
+		}
+		catch (e) {
+			console.error("outer",e.message);
+		}
+		/*
+			"inner" "oops"
+			"finally"
+		*/
+		
+		//try语句发生嵌套，内部再次抛出异常
+		try {
+			try {
+				throw new Error("oops");
+			}
+			catch (e){
+				throw e;
+				console.error("inner", e.message);  //此语句不会被处理
+			}
+			finally {
+				console.log("finally");
+			}
+		}
+		catch (e) {
+			console.error("outer",e.message);
+		}
+		/*
+			"outer" "oops"
+		*/
+		try {
+			try {
+				throw new Error("oops");
+			}
+			catch (e){
+				console.error("inner", e.message);
+				throw e;
+			}
+			finally {
+				console.log("finally");
+			}
+		}
+		catch (e) {
+			console.error("outer",e.message);
+		}
+		/*	
+			"inner" "oops"
+			"finally"
+			"outer" "oops"
+		*/
+	异步错误处理：
+		涉及到异步代码，无法在调用时捕获，原因就是在捕获的当时，回调函数并未执行。
+		//此时除了在printTime函数内部捕获错误外，外层代码并无法捕获。
+		function printTime() {
+			throw new Error();
+		}
+
+		try {
+			setTimeout(printTime, 1000);
+			console.log('done');
+		} catch (e) {
+			console.error('error');
+		}
+		/*
+			done
+		*/
