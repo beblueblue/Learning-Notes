@@ -1,0 +1,64 @@
+1、运算符
+	1.1特殊运算符：
+	条件运算符：c?a:b  //c为true，表达式值为a；c为false，表达式值为b。
+	逗号运算符：var val = (1,2,3);  //val = 3, 逗号运算符会依次计算表达式，返回值为最后一个表达式的值
+	delede 运算符：delete obj.x;  //删除对象的属性
+		var obj = {x : 1};
+		obj.x;  //1
+		delete obj.x;
+		obj,x;  //undefined
+		注意：从IE9开始，利用Object.defineProperty的configuarable标签，可以阻止delete操作
+		var obj = {};
+		Object.defineProperty(obj,'x',{
+			configurable : false,
+			value : 1
+		});
+		delete obj.x;  //false
+		obj.x;  //1
+	in 运算符：prop in objectName;  //如果属性存在于对象，返回true
+		使用delete删除，in运算符对所删属性返回false；
+		如果属性只是赋值为undefined，没有delete操作，in运算仍返回true；
+		如果属性是从原型链上继承而来，in运算符返回true。
+	instanceof 运算符：object instanceof constructor;  
+						//测试对象object的原型链上是否存在构造函数constructor.prototype的属性。
+		function C(){};
+		function D(){};
+		
+		var o = new C();
+		o instanceof C;  //true，因为Object.getPrototypeOf(o)  === C.prototype的属性。
+		o instanceof D;  //false，因为D.prototype不在o的原型链上
+		
+		o instanceof Object;  //true，因为Object.prototype.isPrototyoeOf(0)返回true
+		C.prototype instanceof Object;  //true，同上
+	typeof 运算符：typeof operand;  //判断运算符结果的类型
+		Type 														Result
+		Undefined 													"undefined"
+		Null 														"object" 
+		Boolean 													"boolean"
+		Number 														"number"
+		String 														"string"
+		Symbol (new in ECMAScript 2015) 							"symbol"
+		Host object (provided by the JS environment) 				Implementation-dependent
+		Function object (implements [[Call]] in ECMA-262 terms) 	"function"
+		Any other object 											"object"
+	new 运算符：new constructor[([arguments])];  
+			//创建一个用户定义的对象类型的实例或一个具有构造函数的内置对象类型
+		可以利用hasOwnProperty方法来判断是对象的直接属性还是来自原型上的属性
+		function Foo(){};
+		Foo.prototype.x = 1;
+		var obj = new Foo();
+		obj.x;  //1
+		
+		obj.hasOwnProperty('x');  //false
+		obj._prpto_.hasOwnProperty('x');  //true
+	this 运算符：可以利用call和apply方法修改this指向。
+		谁调用this，this指向谁。  //全局作用域下，this指向window
+		ECMA标准规定，在strict模式下让函数的this指向undefind。
+	void 运算符：void expression;  //计算表达式expression，但返回undefined
+		<a href="javascript:void(0);">
+			Click here to do nothing
+		</a>
+
+		<a href="javascript:void(document.body.style.backgroundColor='green');">
+			Click here for green background
+		</a>
