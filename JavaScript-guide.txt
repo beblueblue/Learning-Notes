@@ -103,6 +103,10 @@
 	3.2 for...in 循环，可以把一个对象的所有属性一次循环出来。
 		for...in 对Array的循环得到是String而不是Number,
 		需要利用Number(value),parseInt(string,radix基数),parseFloat(string)转化
+		for...in的坑：
+			1.顺序不确定，具体的顺序依赖引擎的实现；
+			2.对象的每个属性具有描述器，enumerable(可枚举)为false时，不会被遍历
+			3.for...in对象属性时，受原型链影响（enumerable为true的话）。
 	3.3 while循环：while(condition){循环语句}，do{循环语句}while(condition);
 		do{...}while(),循环体至少执行一次，for和while可能一次都不执行。
 		
