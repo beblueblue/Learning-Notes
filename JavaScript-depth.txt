@@ -209,3 +209,55 @@
 		/*
 			done
 		*/
+	
+	2.4 function 语句
+	fd();  //true
+	function fd(){...} //函数声明
+	
+	fe();  //TypeError
+	var fe = function {...} //函数表达式
+	函数声明被预处理，表达式则没有。还可以利用new创建函数对象。
+	
+	2.5 for...in 语句
+	坑比较多！
+		1.顺序不确定，具体的顺序依赖引擎的实现；
+		2.对象的每个属性具有描述器，enumerable(可枚举)为false时，不会被遍历
+		3.for...in对象属性时，受原型链影响（enumerable为true的话）。
+	
+	2.6 switch 语句
+	条件分支语句：
+		switch (val) {
+			case1:
+				//do something
+				break;
+			case2:
+				//do something
+			default:
+				//do something
+				break;
+		}
+		
+	2.7 循环 语句
+		while(isTrue) {
+			//do sth.
+		}
+		
+		do{
+			//do sth.
+		} while (isTrue)
+		
+		for (let i=0; i<n; i++) {
+			//do sth.
+		}
+		
+	2.8 with 语句
+		不建议使用！strict模式下被禁用！ //让JS引擎优化更难；可读性差。
+		利用定义变量的方式来代替with语句！
+		
+		with (document.form[0]){
+			console.log(name.value);
+		}
+		
+		var forms = document.forms[0];
+		console.log(forms.name.value);
+		
