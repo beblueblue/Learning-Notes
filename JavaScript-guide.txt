@@ -1212,4 +1212,24 @@
 	模版引擎PK：Jade，EJS，Swig，Nunjucks，doT.js……
 	测试框架包括：Mocha，Expresso，Unit.js，Karma……
 	构建工具有：Grunt，Gulp，Webpack……
-	
+	23.2 koa：是Express的下一代基于Node.js的Web框架，目前有1.x和2.0两个版本。
+	Express基于ES5语法，koa支持ES6
+		koa入门：对于每一个HTTP请求，koa将调用传入的异步函数来处理
+			async(ctx, next) => {
+				await next();
+				//设置response的Content-Type:
+				ctx.response.type = 'text/html';
+				//设置response的内容:
+				ctx.response.body = '<h1>Hello, koa2!</<h1>';
+			}
+			其中，ctx: 是由koa传入的封装了request和response的变量
+				next: 是koa传入的将要处理的下一个异步函数。
+				上面的的异步函数中，首先用await next();处理下一个异步函数，然后才是设置response内容。
+			安装koa: （推荐方法二）
+				方法一：进入工程目录，命令行：npm install koa@2.0.0
+				方法二：在工程目录下，创建package.json，增加依赖项："dependencies":{"koa":"2.0.0"}
+						进入工程目录，命令行：npm install
+			注意，任何时候都可以直接删除整个node_modules目录，应该可以npm install命令重下载，
+			并且，node_modules目录不需要版本控制
+		处理URL：引入"koa-router":"7.0.0"这个middleware，负责处理URL映射
+		
