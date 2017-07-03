@@ -1,3 +1,3 @@
-#Learn to use git 
+# Learn to use git 
 
-##Record learning notes about git and JavaScript
+## Record learning notes about git and JavaScript
