@@ -1,3 +1,3 @@
-# Learn to use git 
+# Learn to be a Web Developer
 
-## Record learning notes about git and JavaScript
+## Record learning notes about front end development
