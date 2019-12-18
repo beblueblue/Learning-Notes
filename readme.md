@@ -41,10 +41,13 @@ _真的~ 真的~ 很不错，To Be Excellent ! 加油~_
 + 线性代数--学习笔记2（纸质，没有连接~）
 >学习原址：[麻省理工公开课：线性代数 by Gilbert Strang](http://open.163.com/newview/movie/courseintro?newurl=%2Fspecial%2Fopencourse%2Fdaishu.html)
 
-+ [WebGL编程指南](https://note.youdao.com/ynoteshare1/index.html?id=245d432b2762600400d639cddefd7a26&type=note)
++ [WebGL编程指南--学习笔记](https://note.youdao.com/ynoteshare1/index.html?id=245d432b2762600400d639cddefd7a26&type=note)
 
 + [three.js相关概念--1](http://note.youdao.com/noteshare?id=74e3034aa5ae11c490e492f317b7ae9a)
 + [three.js相关概念--2 材质相关](http://note.youdao.com/noteshare?id=776328fe48ee0fc5a2fd5842726063dd)
+
++ [图形学demo集--1](https://github.com/beblueblue/WebGL-program-guide)
++ [图形学demo集--2](https://github.com/beblueblue/render_three_server)
 
 ### 数据结构与算法
 + [数据结构与算法--学习笔记1](http://note.youdao.com/noteshare?id=69a38ab35a3b1aaa60d1e871f225f194)
