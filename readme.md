@@ -32,7 +32,7 @@ _真的~ 真的~ 很不错，To Be Excellent ! 加油~_
 + [VUE源码阅读1](http://note.youdao.com/noteshare?id=788d896a25e1188c19b74ea65fcf2e3c)
 >文档地址：[VUE官方文档](https://cn.vuejs.org/v2/guide/installation.html)
 
-+ [React--学习笔记](https://github.com/beblueblue/learningNotes/blob/master/%E5%AD%A6%E4%B9%A0Vue.js.pdf)
++ [React--学习笔记](http://note.youdao.com/noteshare?id=8545e08c365c3c9984166dbbf7f98725)
 >文档地址：[React官方文档](https://reactjs.org/docs/getting-started.html)
 
 ### 计算机图形学
