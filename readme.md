@@ -14,7 +14,7 @@ _真的~ 真的~ 很不错，To Be Excellent ! 加油~_
 + [JavaScript深入浅出--学习笔记2](http://note.youdao.com/noteshare?id=850abfde11550e26eecac4fd3ffb0c3a)
 >学习原址: [Bosn，花名霍雍](https://www.imooc.com/learn/277)
 
-+ [深入理解JavaScript原型和闭包--学习笔记](https://github.com/beblueblue/learningNotes/blob/master/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3JavaScript%E5%8E%9F%E5%9E%8B%E5%92%8C%E9%97%AD%E5%8C%85%20--%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0.pdf)
++ [深入理解JavaScript原型和闭包--学习笔记](http://note.youdao.com/noteshare?id=4987748d03d7053310eb27fb2c8bb315)
 >学习原址: [王福朋](https://www.cnblogs.com/wangfupeng1988/p/3977924.html)
 
 + [ECMAScript 6 入门--学习笔记](http://note.youdao.com/noteshare?id=a34c2cea079483feb4f7752c505049ae)
@@ -28,7 +28,8 @@ _真的~ 真的~ 很不错，To Be Excellent ! 加油~_
 + [npm--学习笔记](http://note.youdao.com/noteshare?id=079791a029cc5784092f6bf17abe3a5b)
 >文档地址：[npm官方文档](https://docs.npmjs.com/)
 
-+ [VUE--学习笔记](https://github.com/beblueblue/learningNotes/blob/master/%E5%AD%A6%E4%B9%A0Vue.js.pdf)
++ [VUE--学习笔记](http://note.youdao.com/noteshare?id=8e00df525bd44763095336880269f4ca)
++ [VUE源码阅读1](http://note.youdao.com/noteshare?id=788d896a25e1188c19b74ea65fcf2e3c)
 >文档地址：[VUE官方文档](https://cn.vuejs.org/v2/guide/installation.html)
 
 + [React--学习笔记](https://github.com/beblueblue/learningNotes/blob/master/%E5%AD%A6%E4%B9%A0Vue.js.pdf)
